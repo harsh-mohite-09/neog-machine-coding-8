@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContextProvider";
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -86,10 +87,25 @@ const EventDetailPage = () => {
               <CardFooter>₹{event.price}</CardFooter>
             </Card>
             <Heading fontSize="1.5rem">{`Speakers: (${event.speakers.length})`}</Heading>
-            <Flex flexDir="column" gap={1}>
-              {event.speakers.map((speaker, i) => (
-                <Text key={i}>{speaker.name}</Text>
-              ))}
+            <Flex gap={4}>
+              {event.speakers.map((speaker) => {
+                return (
+                  <Flex gap={2}>
+                    <Flex
+                      flexDir="column"
+                      p={4}
+                      alignItems="center"
+                      border="1px solid #f7f7f7"
+                      boxShadow="0 0 8px 0 rbga(0,0,0,0.3)"
+                      borderRadius="lg"
+                    >
+                      <Avatar src={speaker.image} size="md" />
+                      <Text fontWeight="bold">{speaker.name}</Text>
+                      <Text>{speaker.designation}</Text>
+                    </Flex>
+                  </Flex>
+                );
+              })}
             </Flex>
 
             <Button
